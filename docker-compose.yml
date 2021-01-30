@@ -7,9 +7,9 @@ services:
       - MYSQL_ROOT_PASSWORD=mysql
       - MYSQL_USER=root
     volumes:
-      - accounting_challenge_data:/var/lib/postgresql/data
+      - accounting_challenge_data:/var/lib/mysql/data
     ports:
-      - "3307:3306"
+      - "3306:3306"
   rails:
     build: .
     command: /bin/sh -c "bundle exec rake db:setup; bundle exec rails s -b 0.0.0.0"

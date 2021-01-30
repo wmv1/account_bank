@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :tokens, only: [:create]
+  resources :users, only: [:create]
+
+  get  '/balance/:account_id', to: 'accounts#balance'
+  post 'accounts/transfer', to: 'accounts#transfer'
+
+  resources :accounts, only: [:create]
 end
