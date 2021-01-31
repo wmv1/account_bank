@@ -2,8 +2,8 @@ class TokensController < ApplicationController
   def create
     user_name, password = token_params.values_at(:username, :password)
     user = User.find_by(username: user_name)
-    return head :unauthorized if user.nil? or !user.valid_password?(password)
-    render json: payload(user)
+    return head :unauthorized if user.nil? || !user.valid_password?(password)
+    render json: payload(user), status: :created
   end
 
   private

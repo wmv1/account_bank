@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
   def create
-
     user = User.new(user_params)
     user.save!
-    render json: {token: JwtToken.encode({user_id: user.reload.id})}
+    render json: {token: JwtToken.encode({user_id: user.reload.id})}, status: :created
   end
 
   rescue_from 'StandardError' do |e|

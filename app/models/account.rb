@@ -18,8 +18,6 @@ class Account < ApplicationRecord
     raise StandardError, message  unless have_balance?(source_account, amount)
 
     ActiveRecord::Base.transaction do
-      Rails.logger.info(source_account.id)
-      Rails.logger.info(destination_account.id)
       self.withdraw(source_account, amount)
       self.deposit(destination_account, amount)
     end

@@ -3,7 +3,8 @@ class AccountsController < ApplicationController
 
   def create
     Account.create(account_params)
-    render status: :created
+    user_id = User.find(account_params[:user_id])
+    render json: {token: JwtToken.encode({user_id: user_id})}, status: :created
   rescue StandardError => e
     unprocessable(e.message)
   end

@@ -8,18 +8,10 @@ class User < ApplicationRecord
     user_password == user_password
   end
 
-  def as_json(options = {})
-    super(options.merge())
-  end
+  private
 
   def user_password
     return nil unless self.password.present?
     @password ||= Password.new(password)
-  end
-
-  def user_password=(value)
-    return unless value.present?
-    @password = value
-    self.password = Password.create(value)
   end
 end
